@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objects</title>
+</head>
+<body>
+<a href="{% url 'tw:all' %}">Tws</a>
+{% for object in objects %}
+    <h1>{{ object }}</h1>
+    <em>{{ object.date }}</em>
+    <hr>
+{% endfor %}
+
+</body>
+</html>

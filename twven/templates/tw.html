@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tw</title>
+</head>
+<body>
+<a href="{% url 'tw:all' %}">Back</a>
+<h1>object = {{ tw.object }}</h1>
+<h1>date = {{ tw.date }}</h1>
+<h1>status = {{ tw.status }}</h1>
+<h1>date1_start = {{ tw.date1_start }}</h1>
+<h1>date1_end = {{ tw.date1_end }}</h1>
+<h1>date2_start = {{ tw.date2_start }}</h1>
+<h1>date2_end = {{ tw.date2_end }}</h1>
+<h1>date3_start = {{ tw.date3_start }}</h1>
+<h1>date3_end = {{ tw.date3_end }}</h1>
+<h1>currentTask = {{ tw.currentTask }}</h1>
+<a href="{% url 'tw:done' tw.object.id%}">Done</a>
+<a href="{% url 'tw:in_work' tw.object.id%}">In work</a>
+<a href="{% url 'tw:test' tw.object.id%}">Test</a>
+
+</body>
+</html>

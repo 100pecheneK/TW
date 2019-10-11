@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tws</title>
+    <style>
+        .disabled {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+<a href="{% url 'ob:view' %}">Back</a>
+{% for tw in tws %}
+    <h2><a class="{% if tw.status == 0 or tw.status == 4 or tw.status == 8 or tw.status == 12 %}disabled{% endif %}" href="{% url 'tw:view' tw.object.id %}">{{ tw.object }}</a></h2>
+{% endfor %}
+
+</body>
+</html>
