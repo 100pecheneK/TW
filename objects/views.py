@@ -2,29 +2,25 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # from django.views.generic import View
 from .models import *
+from django.db.models import Q
 
 
 # Create your views here.
 def view(request):
     objects = Object.objects.all()
-    task_old_count = Tw.objects.filter(status=111).count()
-    task_old_count += Tw.objects.filter(status=222).count()
-    task_old_count += Tw.objects.filter(status=333).count()
-    task_old_count += Tw.objects.filter(status=444).count()
-    task_new_count = Tw.objects.filter(status=1).count()
-    task_new_count += Tw.objects.filter(status=4).count()
-    task_new_count += Tw.objects.filter(status=7).count()
-    task_new_count += Tw.objects.filter(status=10).count()
-    task_in_work_count = Tw.objects.filter(status=2).count()
-    task_in_work_count += Tw.objects.filter(status=5).count()
-    task_in_work_count += Tw.objects.filter(status=8).count()
-    task_in_work_count += Tw.objects.filter(status=11).count()
-    task_all = Tw.objects.all().count()
+
+    tws_all = Tw.objects.all().count()
+    tws_status_recd = Tw.objects.filter(Q(status=1) | Q(status=4) | Q(status=7) | Q(status=10)).count()
+    tws_status_in_work = Tw.objects.filter(Q(status=2) | Q(status=5) | Q(status=8) | Q(status=11)).count()
+    tws_status_expired = Tw.objects.filter(Q(status=111) | Q(status=222) | Q(status=333) | Q(status=444)).count()
+    tws_status_done = Tw.objects.filter(Q(status=3) | Q(status=6) | Q(status=9) | Q(status=12)).count()
+
     context = {
         'objects': objects,
-        'task_old_count': task_old_count,
-        'task_new_count': task_new_count,
-        'task_in_work_count': task_in_work_count,
-        'task_all': task_all,
+        'tws_all': tws_all,
+        'tws_status_recd': tws_status_recd,
+        'tws_status_in_work': tws_status_in_work,
+        'tws_status_expired': tws_status_expired,
+        'tws_status_done': tws_status_done,
     }
     return render(request, 'index.html', context)

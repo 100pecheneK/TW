@@ -6,9 +6,9 @@ from django.urls import reverse
 import datetime
 from datetime import timedelta
 from datetime import datetime as dt
+from django.db.models import Q
 
-import time
-
+# Русификация
 RUS = {
     0: 'объект создан и не активен для задания',
     1: 'получено задание 1',
@@ -32,40 +32,24 @@ RUS = {
 
 # Отображение всех объектов tw
 def view_all(request):
-    start = time.monotonic()
     # tws = Tw.objects.exclude(status=0).exclude(status=3).exclude(status=6).exclude(status=9).exclude(status=12)
-    tws_qs = Tw.objects.all()
-    tws = []
-    tws_status_recd = []
-    tws_status_in_work = []
-    tws_status_expired = []
-    tws_status_done = []
-    for tw in tws_qs:
-        tws.append(tw)
-    for tws_1 in tws:
-        if tws_1.status in (1, 4, 7, 10):
-            tws_1.status = RUS[tws_1.status]
-            tws.remove(tws_1)
-            tws_status_recd.append(tws_1)
-    for tws_2 in tws:
-        if tws_2.status in (2, 5, 8, 11):
-            tws_2.status = RUS[tws_2.status]
-            tws.remove(tws_2)
-            tws_status_in_work.append(tws_2)
-    for tws_3 in tws:
-        if tws_3.status in (111, 222, 333, 444):
-            tws_3.status = RUS[tws_3.status]
-            tws.remove(tws_3)
-            tws_status_expired.append(tws_3)
-    for tws_4 in tws:
-        if tws_4.status in (3, 6, 9, 12):
-            tws_4.status = RUS[tws_4.status]
-            tws.remove(tws_4)
-            tws_status_done.append(tws_4)
-    end = time.monotonic()
-    timer = end - start
+    #
+    tws = Tw.objects.all()
+    tws_status_recd = Tw.objects.filter(Q(status=1) | Q(status=4) | Q(status=7) | Q(status=10))
+    tws_status_in_work = Tw.objects.filter(Q(status=2) | Q(status=5) | Q(status=8) | Q(status=11))
+    tws_status_expired = Tw.objects.filter(Q(status=111) | Q(status=222) | Q(status=333) | Q(status=444))
+    tws_status_done = Tw.objects.filter(Q(status=3) | Q(status=6) | Q(status=9) | Q(status=12))
+    # Русификация
+    for tw in tws_status_recd:
+        tw.status = RUS[tw.status]
+    for tw in tws_status_in_work:
+        tw.status = RUS[tw.status]
+    for tw in tws_status_expired:
+        tw.status = RUS[tw.status]
+    for tw in tws_status_done:
+        tw.status = RUS[tw.status]
+
     context = {
-        'time': timer,
         'tws': tws,
         'tws_status_recd': tws_status_recd,
         'tws_status_in_work': tws_status_in_work,
@@ -78,51 +62,47 @@ def view_all(request):
 
 # Отображение одного объекта tw
 def detail_view(request, obj_id):
-    time = (datetime.date.today()).strftime("%Y-%m-%d")
+    # Не обязательно
+    time_today = (datetime.date.today()).strftime("%Y-%m-%d")
     # Объект задания
-    tw = Tw.objects.get(object=obj_id)
+    tw = Tw.objects.get(id=obj_id)
     tw.status = RUS[tw.status]
     # Задание
-    task_text = Task.objects.get(taskNumber=tw.currentTask)
+    task = Task.objects.get(taskNumber=tw.currentTask)
 
     context = {
+        'time': time_today,
         'tw': tw,
-        'time': time,
-        'task_text': task_text.text,
+        'task': task,
     }
     return render(request, 'tw.html', context)
 
 
 # Кнопка "Готово"
 def done(request, obj_id):
-    tw = Tw.objects.get(object=obj_id)
+    tw = Tw.objects.get(id=obj_id)
     if tw.status in (1, 2, 111):
         tw.status = 3
         tw.date1_end = datetime.date.today()
-        # !Поправить разницу во времени
         tw.date2_start = (dt.strptime(str(tw.date1_end), '%Y-%m-%d') + timedelta(days=7)).strftime("%Y-%m-%d")
     elif tw.status in (4, 5, 222):
         tw.status = 6
         tw.date2_end = datetime.date.today()
-        # !Поправить разницу во времени
         tw.date3_start = (dt.strptime(str(tw.date2_end), '%Y-%m-%d') + timedelta(days=7)).strftime("%Y-%m-%d")
     elif tw.status in (7, 8, 333):
         tw.status = 9
         tw.date3_end = datetime.date.today()
-        # !Поправить разницу во времени
         tw.date4_start = (dt.strptime(str(tw.date3_end), '%Y-%m-%d') + timedelta(days=7)).strftime("%Y-%m-%d")
     elif tw.status in (10, 11, 444):
         tw.status = 12
         tw.date4_end = datetime.date.today()
-        # !Поправить разницу во времени
-        # tw.date3_start = dt.strptime(tw.date3_end, '%Y-%m-%d') + timedelta(days=7)
     tw.save()
     return HttpResponseRedirect(reverse('tw:all'))
 
 
 # Кнопка "В работу"
 def in_work(request, obj_id):
-    tw = Tw.objects.get(object=obj_id)
+    tw = Tw.objects.get(id=obj_id)
     if tw.status in (1, 111):
         tw.status = 2
     elif tw.status in (4, 222):
@@ -135,6 +115,7 @@ def in_work(request, obj_id):
     return HttpResponseRedirect(reverse('tw:all'))
 
 
+# Скрипт для бота обновления
 def reload(request):
     tws = Tw.objects.all()
     for tw in tws:
@@ -163,5 +144,4 @@ def reload(request):
             tw.status = 444
             tw.currentTask = 4
         tw.save()
-    # return HttpResponseRedirect(reverse('tw:all'))
     return HttpResponse('OK')

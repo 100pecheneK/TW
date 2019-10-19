@@ -13,29 +13,34 @@
             box-shadow: 1px 1px 3px black;
             transition: 0.5s;
         }
-    h4 {
-        margin-right: 1em;
-        padding: 1em;
-        border-radius: 60px;
-    }
+
+        h4 {
+            margin-right: 1em;
+            padding: 1em;
+            border-radius: 60px;
+        }
+
         .flex {
             display: flex;
         }
 
-        .old {
+        .tws_status_recd {
+            background-color: green;
+        }
+
+        .tws_status_in_work {
+            background-color: yellow;
+        }
+
+        .tws_status_expired {
             background-color: red;
         }
 
-        .new {
-            background-color: greenyellow;
+        .tws_status_done {
+            background-color: lightseagreen;
         }
-
-        .inwork {
-            background-color: orange;
-        }
-
-        .all {
-            background-color: lightgray;
+        .tws_all {
+            background-color: white;
         }
 
 
@@ -44,10 +49,11 @@
 <body>
 <a href="{% url 'tw:all' %}">Tasks</a>
 <div class="flex">
-    <h4 class="old">{{ task_old_count }}</h4>
-    <h4 class="new">{{ task_new_count }}</h4>
-    <h4 class="inwork">{{ task_in_work_count }}</h4>
-    <h4 class="all">{{ task_all }}</h4>
+    <h4 class="tws_status_recd">{{ tws_status_recd }}</h4>
+    <h4 class="tws_status_in_work">{{ tws_status_in_work }}</h4>
+    <h4 class="tws_status_expired">{{ tws_status_expired }}</h4>
+    <h4 class="tws_status_done">{{ tws_status_done }}</h4>
+    <h4 class="tws_all">{{ tws_all }}</h4>
 </div>
 {% for object in objects %}
     <h1>{{ object }}</h1>

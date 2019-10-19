@@ -44,6 +44,7 @@
 <a href="{% url 'tw:reload' %}">Reload</a>
 <a href="{% url 'ob:view' %}">Objects</a>
 <div class="container">
+{#Все#}
     <div class="block">
         <h1>tws</h1>
         {% for tw in tws %}
@@ -53,6 +54,7 @@
             </h2>
         {% endfor %}
     </div>
+{#Новые#}
     <div class="block">
         <h1>tws_status_recd</h1>
         {% for tw in tws_status_recd %}
@@ -62,6 +64,7 @@
             </h2>
         {% endfor %}
     </div>
+{#В работе#}
     <div class="block">
         <h1>tws_status_in_work</h1>
         {% for tw in tws_status_in_work %}
@@ -71,6 +74,7 @@
             </h2>
         {% endfor %}
     </div>
+{#Просрочка#}
     <div class="block">
         <h1>tws_status_expired</h1>
         {% for tw in tws_status_expired %}
@@ -80,6 +84,7 @@
             </h2>
         {% endfor %}
     </div>
+{#Готовые#}
     <div class="block">
         <h1>tws_status_done</h1>
         {% for tw in tws_status_done %}
