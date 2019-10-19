@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from objects.models import Tw
-from .models import *
 from django.urls import reverse
+from django.db.models import Q
+
+from objects.models import Tw
+from .models import Task
+
 import datetime
 from datetime import timedelta
 from datetime import datetime as dt
-from django.db.models import Q
 
 # Русификация
 RUS = {
@@ -32,8 +34,6 @@ RUS = {
 
 # Отображение всех объектов tw
 def view_all(request):
-    # tws = Tw.objects.exclude(status=0).exclude(status=3).exclude(status=6).exclude(status=9).exclude(status=12)
-    #
     tws = Tw.objects.all()
     tws_status_recd = Tw.objects.filter(Q(status=1) | Q(status=4) | Q(status=7) | Q(status=10))
     tws_status_in_work = Tw.objects.filter(Q(status=2) | Q(status=5) | Q(status=8) | Q(status=11))

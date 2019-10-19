@@ -39,6 +39,7 @@
         .tws_status_done {
             background-color: lightseagreen;
         }
+
         .tws_all {
             background-color: white;
         }
@@ -48,6 +49,7 @@
 </head>
 <body>
 <a href="{% url 'tw:all' %}">Tasks</a>
+{#Количество заданий#}
 <div class="flex">
     <h4 class="tws_status_recd">{{ tws_status_recd }}</h4>
     <h4 class="tws_status_in_work">{{ tws_status_in_work }}</h4>
@@ -55,6 +57,7 @@
     <h4 class="tws_status_done">{{ tws_status_done }}</h4>
     <h4 class="tws_all">{{ tws_all }}</h4>
 </div>
+
 {% for object in objects %}
     <h1>{{ object }}</h1>
     <em>{{ object.date }}</em>
