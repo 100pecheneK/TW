@@ -1,0 +1,3 @@
+celery redis
+sudo apt install redis-server
+файл celery.py, __init__.py

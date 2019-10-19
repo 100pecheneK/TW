@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Objects</title>
+    <style>
+        a {
+            background-color: orange;
+            text-decoration: none;
+            color: black;
+            padding: 4px;
+            border-radius: 30px;
+            box-shadow: 1px 1px 3px black;
+            transition: 0.5s;
+        }
+    h4 {
+        margin-right: 1em;
+        padding: 1em;
+        border-radius: 60px;
+    }
+        .flex {
+            display: flex;
+        }
+
+        .old {
+            background-color: red;
+        }
+
+        .new {
+            background-color: greenyellow;
+        }
+
+        .inwork {
+            background-color: orange;
+        }
+
+        .all {
+            background-color: lightgray;
+        }
+
+
+    </style>
 </head>
 <body>
-<a href="{% url 'tw:all' %}">Tws</a>
+<a href="{% url 'tw:all' %}">Tasks</a>
+<div class="flex">
+    <h4 class="old">{{ task_old_count }}</h4>
+    <h4 class="new">{{ task_new_count }}</h4>
+    <h4 class="inwork">{{ task_in_work_count }}</h4>
+    <h4 class="all">{{ task_all }}</h4>
+</div>
 {% for object in objects %}
     <h1>{{ object }}</h1>
     <em>{{ object.date }}</em>

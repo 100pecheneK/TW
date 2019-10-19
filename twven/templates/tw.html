@@ -3,22 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Tw</title>
+    <style>
+        a {
+            background-color: orange;
+            text-decoration: none;
+            color: black;
+            padding: 4px;
+            border-radius: 30px;
+            box-shadow: 1px 1px 3px black;
+            transition: 0.5s;
+        }
+
+        h1 {
+            font-size: 1.5em;
+        }
+
+        .start {
+            background-color: pink;
+            border-top: 1px black solid;
+        }
+
+        .end {
+            background-color: papayawhip;
+            border-bottom: 1px black solid;
+        }
+
+        .task {
+            background-color: aquamarine;
+        }
+
+        .row {
+            display: flex;
+            width: 1110px;
+            padding: 1em;
+        }
+
+        .col {
+            display: block;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-<a href="{% url 'tw:all' %}">Back</a>
-<h1>object = {{ tw.object }}</h1>
-<h1>date = {{ tw.date }}</h1>
-<h1>status = {{ tw.status }}</h1>
-<h1>date1_start = {{ tw.date1_start }}</h1>
-<h1>date1_end = {{ tw.date1_end }}</h1>
-<h1>date2_start = {{ tw.date2_start }}</h1>
-<h1>date2_end = {{ tw.date2_end }}</h1>
-<h1>date3_start = {{ tw.date3_start }}</h1>
-<h1>date3_end = {{ tw.date3_end }}</h1>
-<h1>currentTask = {{ tw.currentTask }}</h1>
-<a href="{% url 'tw:done' tw.object.id%}">Done</a>
-<a href="{% url 'tw:in_work' tw.object.id%}">In work</a>
-<a href="{% url 'tw:test' tw.object.id%}">Test</a>
+<em>{{ time }}</em>
+<a href="{% url 'tw:all' %}">Tasks</a>
+<a href="{% url 'ob:view' %}">Objects</a>
+<div class="row">
+    <div class="col">
+        <h1>object = {{ tw.object }}</h1>
+        <h1>date = {{ tw.date }}</h1>
+        <h1>status = {{ tw.status }}</h1>
+        <h1 class="start">date1_start = {{ tw.date1_start }}</h1>
+        <h1 class="end">date1_end = {{ tw.date1_end }}</h1>
+        <h1 class="start">date2_start = {{ tw.date2_start }}</h1>
+        <h1 class="end">date2_end = {{ tw.date2_end }}</h1>
+        <h1 class="start">date3_start = {{ tw.date3_start }}</h1>
+        <h1 class="end">date3_end = {{ tw.date3_end }}</h1>
+        <h1 class="start">date4_start = {{ tw.date4_start }}</h1>
+        <h1 class="end">date4_end = {{ tw.date4_end }}</h1>
+        <h1 class="task">currentTask = {{ task_text }}</h1>
+    </div>
+</div>
+<a href="{% url 'tw:done' tw.object.id %}">Done</a>
+<a href="{% url 'tw:in_work' tw.object.id %}">In work</a>
 
 </body>
 </html>

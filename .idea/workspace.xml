@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a66b7d8e-51f5-4872-a97d-0b04019eeb88" name="Default Changelist" comment="" />
+    <list default="true" id="a66b7d8e-51f5-4872-a97d-0b04019eeb88" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/objects/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objects/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/objects/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twven/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/twven/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twven/templates/tw.html" beforeDir="false" afterPath="$PROJECT_DIR$/twven/templates/tw.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twven/templates/tw_all.html" beforeDir="false" afterPath="$PROJECT_DIR$/twven/templates/tw_all.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twven/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/twven/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twven/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/twven/views.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,20 +31,29 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1S0mBD3yxEQUvzFl3nKKj2Vqqiw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/twven" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/settings" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/twven" />
       <recent name="$PROJECT_DIR$/objects" />
     </key>
@@ -86,10 +109,33 @@
       <workItem from="1570772415723" duration="2511000" />
       <workItem from="1570775202311" duration="2799000" />
       <workItem from="1570784396524" duration="4591000" />
+      <workItem from="1570853686891" duration="3364000" />
+      <workItem from="1570865585877" duration="1171000" />
+      <workItem from="1570868886397" duration="16000" />
+      <workItem from="1570874644819" duration="25000" />
+      <workItem from="1570891173678" duration="411000" />
+      <workItem from="1570951884811" duration="1033000" />
+      <workItem from="1572250967606" duration="2117000" />
+      <workItem from="1571045978640" duration="3935000" />
+      <workItem from="1571284141222" duration="19000" />
+      <workItem from="1571460579577" duration="4731000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

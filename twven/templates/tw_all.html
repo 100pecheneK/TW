@@ -4,16 +4,93 @@
     <meta charset="UTF-8">
     <title>Tws</title>
     <style>
-        .disabled {
-            color: gray;
+        a {
+            background-color: orange;
+            text-decoration: none;
+            color: black;
+            padding: 4px;
+            border-radius: 30px;
+            box-shadow: 1px 1px 3px black;
+            transition: 0.5s;
         }
+
+        .disabled {
+            background-color: gray;
+        }
+
+        .container {
+            margin-top: 10px;
+            display: flex;
+        }
+
+        .block {
+            width: 20%;
+            display: block;
+            border: 1px black solid;
+        }
+        h1 {
+            font-size: 0.9em;
+            text-align: center;
+        }
+        h2 {
+            font-size: 0.95em;
+        }
+
+
     </style>
 </head>
 <body>
-<a href="{% url 'ob:view' %}">Back</a>
-{% for tw in tws %}
-    <h2><a class="{% if tw.status == 0 or tw.status == 4 or tw.status == 8 or tw.status == 12 %}disabled{% endif %}" href="{% url 'tw:view' tw.object.id %}">{{ tw.object }}</a></h2>
-{% endfor %}
+{{ time }}
+<a href="{% url 'tw:reload' %}">Reload</a>
+<a href="{% url 'ob:view' %}">Objects</a>
+<div class="container">
+    <div class="block">
+        <h1>tws</h1>
+        {% for tw in tws %}
+            <h2>
+                <a href="{% url 'tw:view' tw.object.id %}">{{ tw.object }}</a>
+                {{ tw.status }}
+            </h2>
+        {% endfor %}
+    </div>
+    <div class="block">
+        <h1>tws_status_recd</h1>
+        {% for tw in tws_status_recd %}
+            <h2>
+                <a href="{% url 'tw:view' tw.object.id %}">{{ tw.object }}</a>
+                {{ tw.status }}
+            </h2>
+        {% endfor %}
+    </div>
+    <div class="block">
+        <h1>tws_status_in_work</h1>
+        {% for tw in tws_status_in_work %}
+            <h2>
+                <a href="{% url 'tw:view' tw.object.id %}">{{ tw.object }}</a>
+                {{ tw.status }}
+            </h2>
+        {% endfor %}
+    </div>
+    <div class="block">
+        <h1>tws_status_expired</h1>
+        {% for tw in tws_status_expired %}
+            <h2>
+                <a href="{% url 'tw:view' tw.object.id %}">{{ tw.object }}</a>
+                {{ tw.status }}
+            </h2>
+        {% endfor %}
+    </div>
+    <div class="block">
+        <h1>tws_status_done</h1>
+        {% for tw in tws_status_done %}
+            <h2>
+                <a href="{% url 'tw:view' tw.object.id %}">{{ tw.object }}</a>
+                {{ tw.status }}
+            </h2>
+        {% endfor %}
+    </div>
+</div>
+
 
 </body>
 </html>
