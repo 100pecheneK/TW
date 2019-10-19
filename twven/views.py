@@ -52,16 +52,7 @@ def view_all(request):
             tws_2.status = RUS[tws_2.status]
             tws.remove(tws_2)
             tws_status_in_work.append(tws_2)
-    for tws_3 in tws:
-        if tws_3.status in (111, 222, 333, 444):
-            tws_3.status = RUS[tws_3.status]
-            tws.remove(tws_3)
-            tws_status_expired.append(tws_3)
-    for tws_4 in tws:
-        if tws_4.status in (3, 6, 9, 12):
-            tws_4.status = RUS[tws_4.status]
-            tws.remove(tws_4)
-            tws_status_done.append(tws_4)
+    
     end = time.monotonic()
     timer = end - start
     context = {
