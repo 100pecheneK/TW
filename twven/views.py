@@ -6,6 +6,7 @@ from django.urls import reverse
 import datetime
 from datetime import timedelta
 from datetime import datetime as dt
+from django.db.models import Q
 
 import time
 
@@ -34,25 +35,13 @@ RUS = {
 def view_all(request):
     start = time.monotonic()
     # tws = Tw.objects.exclude(status=0).exclude(status=3).exclude(status=6).exclude(status=9).exclude(status=12)
-    tws_qs = Tw.objects.all()
-    tws = []
-    tws_status_recd = []
-    tws_status_in_work = []
-    tws_status_expired = []
-    tws_status_done = []
-    for tw in tws_qs:
-        tws.append(tw)
-    for tws_1 in tws:
-        if tws_1.status in (1, 4, 7, 10):
-            tws_1.status = RUS[tws_1.status]
-            tws.remove(tws_1)
-            tws_status_recd.append(tws_1)
-    for tws_2 in tws:
-        if tws_2.status in (2, 5, 8, 11):
-            tws_2.status = RUS[tws_2.status]
-            tws.remove(tws_2)
-            tws_status_in_work.append(tws_2)
-    
+    # tws_qs = Tw.objects.all()
+    tws = Tw.objects.all()
+    tws_status_recd = Tw.objects.filter(Q(status=1) | Q(status=4) | Q(status=7) | Q(status=10))
+    tws_status_in_work = Tw.objects.filter(Q(status=2) | Q(status=5) | Q(status=8) | Q(status=11))
+    tws_status_expired = Tw.objects.filter(Q(status=111) | Q(status=222) | Q(status=333) | Q(status=444))
+    tws_status_done = Tw.objects.filter(Q(status=3) | Q(status=6) | Q(status=9) | Q(status=12))
+
     end = time.monotonic()
     timer = end - start
     context = {
